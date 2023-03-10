@@ -122,7 +122,11 @@ def get_random_number() -> int:
     return random.randint(1, 100)
 
 
-@dp.message(Command(commands=['start']))
+def write_start(message: Message) -> bool:
+    return message.text == "/start"
+
+
+@dp.message(write_start)
 async def answer_start(message: Message):
     await message.answer("Привіт! \nДавай зіграємо у гру 'Вгадай число'?\n"
                          "Щоб отримати правила гри і список доступних"
